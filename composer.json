@@ -1,0 +1,30 @@
+{
+  "name": "mslwk/freshmail",
+  "description": "Library for calling FreshMail REST API",
+  "type": "library",
+  "license": [
+    "MIT"
+  ],
+  "authors": [
+    {
+      "name": "Maciej Sławik",
+      "email": "maciekslawik@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.0.0"
+  },
+  "keywords": [
+    "FreshMail"
+  ],
+  "autoload": {
+    "psr-4": {
+      "MSlwk\\FreshMail\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MSlwk\\FreshMail\\Tests\\": "tests"
+    }
+  }
+}

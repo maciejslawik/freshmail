@@ -85,6 +85,7 @@ abstract class AbstractHandler
     protected function sendRequest(string $getRequestParamsString, string $postRequestParamsString): string
     {
         $headers = [
+            'Content-Type: application/json',
             'X-Rest-ApiKey: ' . $this->apiKey,
             'X-Rest-ApiSign: ' . $this->getAuthorizationHash(
                 $this->getApiEndpoint() . $getRequestParamsString,

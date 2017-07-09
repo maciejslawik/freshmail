@@ -9,6 +9,7 @@
 namespace MSlwk\FreshMail\Api;
 
 use MSlwk\FreshMail\Error\ErrorHandler;
+use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
 use MSlwk\FreshMail\Handler\Ping\PingHandler;
 
 /**
@@ -78,7 +79,20 @@ class FreshMailClient implements FreshMailClientInterface
         bool $tracking = false,
         string $domain = ''
     ) {
-        return null;
+        $handler = new TransactionalEmailHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->sendTransactionalEmail(
+            $email,
+            $subject,
+            $content,
+            $fromEmail,
+            $fromName,
+            $replyTo,
+            $encoding,
+            $attachmentUrl,
+            $tag,
+            $tracking,
+            $domain
+        );
     }
 
     /**

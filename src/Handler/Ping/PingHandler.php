@@ -24,7 +24,9 @@ class PingHandler extends AbstractHandler
      */
     public function ping(): string
     {
-        $response = $this->processRequest();
+        $getParameters = [];
+        $postParameters = [];
+        $response = $this->processRequest($getParameters, $postParameters);
         return $response->data;
     }
 

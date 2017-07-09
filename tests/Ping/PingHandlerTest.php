@@ -31,7 +31,6 @@ class PingHandlerTest extends TestCase
 
         $pingHandler->expects($this->once())
             ->method('sendRequest')
-            ->with('', '')
             ->will($this->returnValue($sendRequestReturnValue));
 
         return $pingHandler;

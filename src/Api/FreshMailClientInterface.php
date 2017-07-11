@@ -123,7 +123,7 @@ interface FreshMailClientInterface
      * @param string $timeToSend
      * @return null
      */
-    public function sendCampaing(string $campaignHash, string $timeToSend = '');
+    public function sendCampaign(string $campaignHash, string $timeToSend = '');
 
     /**
      * Creates a new campaign.

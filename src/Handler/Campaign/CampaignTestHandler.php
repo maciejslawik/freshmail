@@ -10,6 +10,11 @@ namespace MSlwk\FreshMail\Handler\Campaign;
 
 use MSlwk\FreshMail\Handler\AbstractHandler;
 
+/**
+ * Class CampaignTestHandler
+ *
+ * @package MSlwk\FreshMail\Handler\Campaign
+ */
 class CampaignTestHandler extends AbstractHandler
 {
     const API_ENDPOINT = '/rest/campaigns/sendTest';

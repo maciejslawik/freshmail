@@ -12,8 +12,17 @@ use PHPUnit\Framework\TestCase;
 use MSlwk\FreshMail\Error\ErrorHandler;
 use MSlwk\FreshMail\Exception\Campaign\FreshMailCampaignException;
 
+/**
+ * Class CampaignTestHandlerTest
+ *
+ * @package MSlwk\FreshMail\Test\Campaign
+ */
 class CampaignTestHandlerTest extends TestCase
 {
+    /**
+     * @param $sendRequestReturnValue
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
     public function getCampaignTestHandlerMock($sendRequestReturnValue)
     {
         $campaignTestHandler = $this->getMockBuilder('\MSlwk\FreshMail\Handler\Campaign\CampaignTestHandler')

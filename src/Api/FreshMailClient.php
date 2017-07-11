@@ -11,6 +11,7 @@ namespace MSlwk\FreshMail\Api;
 use MSlwk\FreshMail\Error\ErrorHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignDeleteHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignEditHandler;
+use MSlwk\FreshMail\Handler\Campaign\CampaignSendHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignTestHandler;
 use MSlwk\FreshMail\Handler\Message\SmsHandler;
 use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
@@ -210,9 +211,13 @@ class FreshMailClient implements FreshMailClientInterface
      * @param string $timeToSend
      * @return null
      */
-    public function sendCampaing(string $campaignHash, string $timeToSend = '')
+    public function sendCampaign(string $campaignHash, string $timeToSend = '')
     {
-        return null;
+        $handler = new CampaignSendHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->sendCampaign(
+            $campaignHash,
+            $timeToSend
+        );
     }
 
     /**

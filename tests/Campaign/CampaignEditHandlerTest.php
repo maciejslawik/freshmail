@@ -49,20 +49,20 @@ class CampaignEditHandlerTest extends TestCase
 
     public function testCampaignDoesntExist()
     {
-        $smsHandler = $this->getCampaignDeleteHandlerMock(
+        $campaignEditHandler = $this->getCampaignDeleteHandlerMock(
             '{"errors":[{ "message":"Requested campaign doesnt exist", "code":"1750" }], "status":"errors"}'
         );
         $this->expectException(FreshMailCampaignException::class);
-        $smsHandler->editCampaign('id_hash', 'Test');
+        $campaignEditHandler->editCampaign('id_hash', 'Test');
     }
 
     public function testModificationNotAvailable()
     {
-        $smsHandler = $this->getCampaignDeleteHandlerMock(
+        $campaignEditHandler = $this->getCampaignDeleteHandlerMock(
             '{"errors":[{ "message":"Campaign ready to send, modification not available", "code":"1751" }]'
             . ', "status":"errors"}'
         );
         $this->expectException(FreshMailCampaignException::class);
-        $smsHandler->editCampaign('id_hash', 'Test');
+        $campaignEditHandler->editCampaign('id_hash', 'Test');
     }
 }

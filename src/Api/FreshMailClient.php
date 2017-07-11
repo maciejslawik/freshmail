@@ -11,6 +11,7 @@ namespace MSlwk\FreshMail\Api;
 use MSlwk\FreshMail\Error\ErrorHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignDeleteHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignEditHandler;
+use MSlwk\FreshMail\Handler\Campaign\CampaignTestHandler;
 use MSlwk\FreshMail\Handler\Message\SmsHandler;
 use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
 use MSlwk\FreshMail\Handler\Ping\PingHandler;
@@ -194,7 +195,12 @@ class FreshMailClient implements FreshMailClientInterface
      */
     public function testCampaign(string $campaignHash, array $emailAddresses, array $customFieldsWithValues = [])
     {
-        return null;
+        $handler = new CampaignTestHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->testCampaign(
+            $campaignHash,
+            $emailAddresses,
+            $customFieldsWithValues
+        );
     }
 
     /**

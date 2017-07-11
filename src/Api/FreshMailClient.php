@@ -9,6 +9,7 @@
 namespace MSlwk\FreshMail\Api;
 
 use MSlwk\FreshMail\Error\ErrorHandler;
+use MSlwk\FreshMail\Handler\Campaign\CampaignDeleteHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignEditHandler;
 use MSlwk\FreshMail\Handler\Message\SmsHandler;
 use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
@@ -166,6 +167,20 @@ class FreshMailClient implements FreshMailClientInterface
             $listHash,
             $groupHash,
             $resignLink
+        );
+    }
+
+    /**
+     * Deletes campaign.
+     *
+     * @param string $campaignHash
+     * @return null
+     */
+    public function deleteCampaign(string $campaignHash)
+    {
+        $handler = new CampaignDeleteHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->deleteCampaign(
+            $campaignHash
         );
     }
 

@@ -99,6 +99,14 @@ interface FreshMailClientInterface
     );
 
     /**
+     * Deletes campaign.
+     *
+     * @param string $campaignHash
+     * @return null
+     */
+    public function deleteCampaign(string $campaignHash);
+
+    /**
      * Sends the campaign as a test to given list of email addresses.
      *
      * @param string $campaignHash

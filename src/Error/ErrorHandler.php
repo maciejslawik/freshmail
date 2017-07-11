@@ -45,6 +45,8 @@ class ErrorHandler implements ErrorHandlerInterface
             case $code >= 1250 && $code <= 1251:
                 throw new FreshMailTransactionalEmailException($message, $code);
             case $code >= 1750 && $code <= 1751:
+            case 1724:
+            case 1798:
                 throw new FreshMailCampaignException($message, $code);
             default:
                 throw new FreshMailException($message, $code);

@@ -23,7 +23,7 @@ class CampaignEditHandlerTest extends TestCase
      * @param $sendRequestReturnValue
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    public function getSmsHandlerMock($sendRequestReturnValue)
+    public function getCampaignDeleteHandlerMock($sendRequestReturnValue)
     {
         $campaignEditHandler = $this->getMockBuilder('\MSlwk\FreshMail\Handler\Campaign\CampaignEditHandler')
             ->setConstructorArgs([new ErrorHandler(), '', ''])
@@ -39,7 +39,7 @@ class CampaignEditHandlerTest extends TestCase
 
     public function testCampaignEditSuccessful()
     {
-        $campaignEditHandler = $this->getSmsHandlerMock('{"status":"OK"}');
+        $campaignEditHandler = $this->getCampaignDeleteHandlerMock('{"status":"OK"}');
         $returnValue = $campaignEditHandler->editCampaign(
             'id_hash',
             'campaign_name'
@@ -49,7 +49,7 @@ class CampaignEditHandlerTest extends TestCase
 
     public function testCampaignDoesntExist()
     {
-        $smsHandler = $this->getSmsHandlerMock(
+        $smsHandler = $this->getCampaignDeleteHandlerMock(
             '{"errors":[{ "message":"Requested campaign doesnt exist", "code":"1750" }], "status":"errors"}'
         );
         $this->expectException(FreshMailCampaignException::class);
@@ -58,7 +58,7 @@ class CampaignEditHandlerTest extends TestCase
 
     public function testModificationNotAvailable()
     {
-        $smsHandler = $this->getSmsHandlerMock(
+        $smsHandler = $this->getCampaignDeleteHandlerMock(
             '{"errors":[{ "message":"Campaign ready to send, modification not available", "code":"1751" }]'
             . ', "status":"errors"}'
         );

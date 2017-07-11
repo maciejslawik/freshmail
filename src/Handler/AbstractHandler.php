@@ -102,8 +102,6 @@ abstract class AbstractHandler
         curl_setopt($curl, CURLOPT_POSTFIELDS, $postRequestParamsString);
         $rawResponse = curl_exec($curl);
 
-
-
         $headerSize = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         $response = substr($rawResponse, $headerSize);
         curl_close($curl);

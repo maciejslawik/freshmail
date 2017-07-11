@@ -9,6 +9,7 @@
 namespace MSlwk\FreshMail\Api;
 
 use MSlwk\FreshMail\Error\ErrorHandler;
+use MSlwk\FreshMail\Handler\Message\SmsHandler;
 use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
 use MSlwk\FreshMail\Handler\Ping\PingHandler;
 
@@ -112,7 +113,14 @@ class FreshMailClient implements FreshMailClientInterface
         string $messageId = '',
         bool $single = false
     ) {
-        return null;
+        $handler = new SmsHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->sendSingleSms(
+            $phoneNumber,
+            $content,
+            $from,
+            $messageId,
+            $single
+        );
     }
 
     /**

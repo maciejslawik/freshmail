@@ -15,7 +15,7 @@ namespace MSlwk\FreshMail\Api;
  */
 interface FreshMailClientInterface
 {
-    /**
+    /**—
      * @return string
      */
     public function ping(): string;

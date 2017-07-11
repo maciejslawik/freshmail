@@ -9,6 +9,7 @@
 namespace MSlwk\FreshMail\Error;
 
 use MSlwk\FreshMail\Exception\Authorization\FreshMailAuthorizationException;
+use MSlwk\FreshMail\Exception\Campaign\FreshMailCampaignException;
 use MSlwk\FreshMail\Exception\FreshMailException;
 use MSlwk\FreshMail\Exception\Message\FreshMailSmsException;
 use MSlwk\FreshMail\Exception\Message\FreshMailTransactionalEmailException;
@@ -23,7 +24,9 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * @param \stdClass $error
      * @throws FreshMailAuthorizationException
+     * @throws FreshMailCampaignException
      * @throws FreshMailException
+     * @throws FreshMailSmsException
      * @throws FreshMailTransactionalEmailException
      * @return null
      */
@@ -41,6 +44,8 @@ class ErrorHandler implements ErrorHandlerInterface
             case $code >= 1201 && $code <= 1213:
             case $code >= 1250 && $code <= 1251:
                 throw new FreshMailTransactionalEmailException($message, $code);
+            case $code >= 1750 && $code <= 1751:
+                throw new FreshMailCampaignException($message, $code);
             default:
                 throw new FreshMailException($message, $code);
         }

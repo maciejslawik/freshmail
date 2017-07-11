@@ -69,30 +69,6 @@ interface FreshMailClientInterface
     );
 
     /**
-     * Returns array of campaigns. 25 records per page are returned.
-     *
-     * @param int $page
-     * @return array
-     */
-    public function getCampaigns(int $page = 1): array;
-
-    /**
-     * Returns information about a single campaing.
-     *
-     * @param string $campaignHash
-     * @return \stdClass
-     */
-    public function getSingleCampaign(string $campaignHash): \stdClass;
-
-    /**
-     * Returns information about subscribers behaviour in time.
-     *
-     * @param string $campaignHash
-     * @return array
-     */
-    public function getCampaignTimeDetails(string $campaignHash): array;
-
-    /**
      * Updates campaign information.
      *
      * @param string $campaignHash

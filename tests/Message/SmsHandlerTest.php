@@ -56,7 +56,7 @@ class SmsHandlerTest extends TestCase
             '{"errors":[{ "message":"Incorrect GSM number", "code":"1101" }], "status":"errors"}'
         );
         $this->expectException(FreshMailSmsException::class);
-        $smsHandler->sendSingleSms('r+48987654321', 'Test');
+        $smsHandler->sendSingleSms('+48987654321', 'Test');
     }
 
     public function testEmptyContent()

@@ -9,6 +9,7 @@
 namespace MSlwk\FreshMail\Api;
 
 use MSlwk\FreshMail\Error\ErrorHandler;
+use MSlwk\FreshMail\Handler\Campaign\CampaignEditHandler;
 use MSlwk\FreshMail\Handler\Message\SmsHandler;
 use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
 use MSlwk\FreshMail\Handler\Ping\PingHandler;
@@ -124,39 +125,6 @@ class FreshMailClient implements FreshMailClientInterface
     }
 
     /**
-     * Returns array of campaigns. 25 records per page are returned.
-     *
-     * @param int $page
-     * @return array
-     */
-    public function getCampaigns(int $page = 1): array
-    {
-        return [];
-    }
-
-    /**
-     * Returns information about a single campaing.
-     *
-     * @param string $campaignHash
-     * @return \stdClass
-     */
-    public function getSingleCampaign(string $campaignHash): \stdClass
-    {
-        return new \stdClass();
-    }
-
-    /**
-     * Returns information about subscribers behaviour in time.
-     *
-     * @param string $campaignHash
-     * @return array
-     */
-    public function getCampaignTimeDetails(string $campaignHash): array
-    {
-        return [];
-    }
-
-    /**
      * Updates campaign information.
      *
      * @param string $campaignHash
@@ -185,7 +153,20 @@ class FreshMailClient implements FreshMailClientInterface
         string $groupHash = '',
         string $resignLink = ''
     ) {
-        return null;
+        $handler = new CampaignEditHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->editCampaign(
+            $campaignHash,
+            $name,
+            $urlToDownloadContent,
+            $content,
+            $subject,
+            $fromAddress,
+            $fromName,
+            $replyTo,
+            $listHash,
+            $groupHash,
+            $resignLink
+        );
     }
 
     /**

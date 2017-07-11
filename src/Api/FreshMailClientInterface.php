@@ -141,7 +141,7 @@ interface FreshMailClientInterface
      * @return string Hash of the new campaign.
      */
     public function createCampaign(
-        string $name = '',
+        string $name,
         string $urlToDownloadContent = '',
         string $content = '',
         string $subject = '',

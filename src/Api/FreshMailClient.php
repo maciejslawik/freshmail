@@ -9,6 +9,7 @@
 namespace MSlwk\FreshMail\Api;
 
 use MSlwk\FreshMail\Error\ErrorHandler;
+use MSlwk\FreshMail\Handler\Campaign\CampaignCreateHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignDeleteHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignEditHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignSendHandler;
@@ -236,7 +237,7 @@ class FreshMailClient implements FreshMailClientInterface
      * @return string Hash of the new campaign.
      */
     public function createCampaign(
-        string $name = '',
+        string $name,
         string $urlToDownloadContent = '',
         string $content = '',
         string $subject = '',
@@ -247,7 +248,19 @@ class FreshMailClient implements FreshMailClientInterface
         string $groupHash = '',
         string $resignLink = ''
     ): string {
-        return '';
+        $handler = new CampaignCreateHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->createCampaign(
+            $name,
+            $urlToDownloadContent,
+            $content,
+            $subject,
+            $fromAddress,
+            $fromName,
+            $replyTo,
+            $listHash,
+            $groupHash,
+            $resignLink
+        );
     }
 
     /**

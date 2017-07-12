@@ -8,6 +8,8 @@
 
 namespace MSlwk\FreshMail\Test\Campaign;
 
+use MSlwk\FreshMail\Handler\Campaign\CampaignSendHandler;
+use MSlwk\FreshMail\Tests\BaseTest;
 use PHPUnit\Framework\TestCase;
 use MSlwk\FreshMail\Error\ErrorHandler;
 use MSlwk\FreshMail\Exception\Campaign\FreshMailCampaignException;
@@ -19,6 +21,8 @@ use MSlwk\FreshMail\Exception\Campaign\FreshMailCampaignException;
  */
 class CampaignSendHandlerTest extends TestCase
 {
+    use BaseTest;
+
     /**
      * @param $sendRequestReturnValue
      * @return \PHPUnit_Framework_MockObject_MockObject
@@ -42,6 +46,14 @@ class CampaignSendHandlerTest extends TestCase
         $campaignSendHandler = $this->getCampaignSendHandlerMock('{"status":"OK"}');
         $returnValue = $campaignSendHandler->sendCampaign('id_hash');
         self::assertNull($returnValue);
+    }
+
+    public function testApiEndpoint()
+    {
+        $accountCreateHandler = new CampaignSendHandler(new ErrorHandler(), '', '');
+        $expectedApiEndpoint = '/rest/campaigns/send';
+        $returnedApiEndpoint = $this->getApiEndpoint($accountCreateHandler);
+        self::assertEquals($expectedApiEndpoint, $returnedApiEndpoint);
     }
 
     public function testIncorrectCampaignHash()

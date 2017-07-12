@@ -8,6 +8,8 @@
 
 namespace MSlwk\FreshMail\Test\SpamTest;
 
+use MSlwk\FreshMail\Handler\SpamTest\SpamTestHandler;
+use MSlwk\FreshMail\Tests\BaseTest;
 use PHPUnit\Framework\TestCase;
 use MSlwk\FreshMail\Error\ErrorHandler;
 use MSlwk\FreshMail\Exception\SpamTest\FreshMailSpamTestException;
@@ -19,6 +21,8 @@ use MSlwk\FreshMail\Exception\SpamTest\FreshMailSpamTestException;
  */
 class SpamTestHandlerTest extends TestCase
 {
+    use BaseTest;
+
     /**
      * @param $sendRequestReturnValue
      * @return \PHPUnit_Framework_MockObject_MockObject
@@ -46,6 +50,14 @@ class SpamTestHandlerTest extends TestCase
         $returnData = $spamTestHandler->spamCheck('Test', 'Test');
         self::assertEquals($expectedTestsFailed, $returnData->tests);
         self::assertEquals($expectedScore, $returnData->score);
+    }
+
+    public function testApiEndpoint()
+    {
+        $accountCreateHandler = new SpamTestHandler(new ErrorHandler(), '', '');
+        $expectedApiEndpoint = '/rest/spam_test/check';
+        $returnedApiEndpoint = $this->getApiEndpoint($accountCreateHandler);
+        self::assertEquals($expectedApiEndpoint, $returnedApiEndpoint);
     }
 
     public function testEmptySubject()

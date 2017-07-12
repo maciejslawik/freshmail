@@ -5,9 +5,10 @@
  * @author      Maciej Sławik <maciekslawik@gmail.com>
  * Github:      https://github.com/maciejslawik
  */
-
 namespace MSlwk\FreshMail\Test\Account;
 
+use MSlwk\FreshMail\Handler\Account\AccountCreateHandler;
+use MSlwk\FreshMail\Tests\BaseTest;
 use PHPUnit\Framework\TestCase;
 use MSlwk\FreshMail\Error\ErrorHandler;
 use MSlwk\FreshMail\Exception\Account\FreshMailAccountException;
@@ -19,6 +20,8 @@ use MSlwk\FreshMail\Exception\Account\FreshMailAccountException;
  */
 class AccountCreateHandlerTest extends TestCase
 {
+    use BaseTest;
+
     /**
      * @param $sendRequestReturnValue
      * @return \PHPUnit_Framework_MockObject_MockObject
@@ -52,6 +55,14 @@ class AccountCreateHandlerTest extends TestCase
         self::assertEquals($expectedHash, $returnData->hash);
         self::assertEquals($expectedApiKey, $returnData->api_key);
         self::assertEquals($expectedApiSecret, $returnData->api_secret);
+    }
+
+    public function testApiEndpoint()
+    {
+        $accountCreateHandler = new AccountCreateHandler(new ErrorHandler(), '', '');
+        $expectedApiEndpoint = '/rest/account/create';
+        $returnedApiEndpoint = $this->getApiEndpoint($accountCreateHandler);
+        self::assertEquals($expectedApiEndpoint, $returnedApiEndpoint);
     }
 
     public function testEmptyLogin()

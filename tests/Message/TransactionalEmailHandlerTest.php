@@ -8,6 +8,8 @@
 
 namespace MSlwk\FreshMail\Test\Message;
 
+use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
+use MSlwk\FreshMail\Tests\BaseTest;
 use PHPUnit\Framework\TestCase;
 use MSlwk\FreshMail\Error\ErrorHandler;
 use MSlwk\FreshMail\Exception\Message\FreshMailTransactionalEmailException;
@@ -19,6 +21,8 @@ use MSlwk\FreshMail\Exception\Message\FreshMailTransactionalEmailException;
  */
 class TransactionalEmailHandlerTest extends TestCase
 {
+    use BaseTest;
+
     /**
      * @param $sendRequestReturnValue
      * @return \PHPUnit_Framework_MockObject_MockObject
@@ -54,6 +58,14 @@ class TransactionalEmailHandlerTest extends TestCase
             'http://domain.com'
         );
         self::assertNull($returnValue);
+    }
+
+    public function testApiEndpoint()
+    {
+        $accountCreateHandler = new TransactionalEmailHandler(new ErrorHandler(), '', '');
+        $expectedApiEndpoint = '/rest/mail';
+        $returnedApiEndpoint = $this->getApiEndpoint($accountCreateHandler);
+        self::assertEquals($expectedApiEndpoint, $returnedApiEndpoint);
     }
 
     public function testWrongSubscriberEmail()

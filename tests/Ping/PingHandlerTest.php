@@ -8,6 +8,8 @@
 
 namespace MSlwk\FreshMail\Test\Ping;
 
+use MSlwk\FreshMail\Handler\Ping\PingHandler;
+use MSlwk\FreshMail\Tests\BaseTest;
 use PHPUnit\Framework\TestCase;
 use MSlwk\FreshMail\Error\ErrorHandler;
 
@@ -18,11 +20,13 @@ use MSlwk\FreshMail\Error\ErrorHandler;
  */
 class PingHandlerTest extends TestCase
 {
+    use BaseTest;
+
     /**
      * @param $sendRequestReturnValue
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    private function getPingHandlerMock($sendRequestReturnValue)
+    public function getPingHandlerMock($sendRequestReturnValue)
     {
         $pingHandler = $this->getMockBuilder('\MSlwk\FreshMail\Handler\Ping\PingHandler')
             ->setConstructorArgs([new ErrorHandler(), '', ''])
@@ -40,5 +44,13 @@ class PingHandlerTest extends TestCase
     {
         $pingHandler = $this->getPingHandlerMock('{"status":"OK", "data": "pong"}');
         self::assertEquals('pong', $pingHandler->ping());
+    }
+
+    public function testApiEndpoint()
+    {
+        $accountCreateHandler = new PingHandler(new ErrorHandler(), '', '');
+        $expectedApiEndpoint = '/rest/ping';
+        $returnedApiEndpoint = $this->getApiEndpoint($accountCreateHandler);
+        self::assertEquals($expectedApiEndpoint, $returnedApiEndpoint);
     }
 }

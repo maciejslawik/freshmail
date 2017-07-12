@@ -8,6 +8,8 @@
 
 namespace MSlwk\FreshMail\Test\Message;
 
+use MSlwk\FreshMail\Handler\Message\SmsHandler;
+use MSlwk\FreshMail\Tests\BaseTest;
 use PHPUnit\Framework\TestCase;
 use MSlwk\FreshMail\Error\ErrorHandler;
 use MSlwk\FreshMail\Exception\Message\FreshMailSmsException;
@@ -19,6 +21,8 @@ use MSlwk\FreshMail\Exception\Message\FreshMailSmsException;
  */
 class SmsHandlerTest extends TestCase
 {
+    use BaseTest;
+
     /**
      * @param $sendRequestReturnValue
      * @return \PHPUnit_Framework_MockObject_MockObject
@@ -48,6 +52,14 @@ class SmsHandlerTest extends TestCase
             false
         );
         self::assertNull($returnValue);
+    }
+
+    public function testApiEndpoint()
+    {
+        $accountCreateHandler = new SmsHandler(new ErrorHandler(), '', '');
+        $expectedApiEndpoint = '/rest/sms/send';
+        $returnedApiEndpoint = $this->getApiEndpoint($accountCreateHandler);
+        self::assertEquals($expectedApiEndpoint, $returnedApiEndpoint);
     }
 
     public function testIncorrectNumber()

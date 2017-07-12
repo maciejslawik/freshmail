@@ -280,8 +280,8 @@ interface FreshMailClientInterface
      * @param string $password
      * @param string $firstname
      * @param string $lastname
-     * @param string $company
      * @param string $phoneNumber
+     * @param string $company
      * @param bool $sendActivationEmail
      * @param bool $requireActivation
      * @param bool $isChildAccount
@@ -292,8 +292,8 @@ interface FreshMailClientInterface
         string $password,
         string $firstname,
         string $lastname,
-        string $company,
         string $phoneNumber,
+        string $company = '',
         bool $sendActivationEmail = true,
         bool $requireActivation = true,
         bool $isChildAccount = false

@@ -9,6 +9,7 @@
 namespace MSlwk\FreshMail\Api;
 
 use MSlwk\FreshMail\Error\ErrorHandler;
+use MSlwk\FreshMail\Handler\Account\AccountCreateHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignCreateHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignDeleteHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignEditHandler;
@@ -416,8 +417,8 @@ class FreshMailClient implements FreshMailClientInterface
      * @param string $password
      * @param string $firstname
      * @param string $lastname
-     * @param string $company
      * @param string $phoneNumber
+     * @param string $company
      * @param bool $sendActivationEmail
      * @param bool $requireActivation
      * @param bool $isChildAccount
@@ -428,13 +429,24 @@ class FreshMailClient implements FreshMailClientInterface
         string $password,
         string $firstname,
         string $lastname,
-        string $company,
         string $phoneNumber,
+        string $company = '',
         bool $sendActivationEmail = true,
         bool $requireActivation = true,
         bool $isChildAccount = false
     ): \stdClass {
-        return new \stdClass();
+        $handler = new AccountCreateHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->registerNewAccount(
+            $login,
+            $password,
+            $firstname,
+            $lastname,
+            $phoneNumber,
+            $company,
+            $sendActivationEmail,
+            $requireActivation,
+            $isChildAccount
+        );
     }
 
     /**

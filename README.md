@@ -22,3 +22,12 @@ Use composer to include the library in your project.
 ```
 composer require mslwk/freshmail
 ```
+
+#### Functions ####
+The library provides methods of communicating with the API to:
+* Test connection 
+* Send transactional emails
+* Send SMS messages
+* Creating a new campaign
+* Editing, deleting, testing and sending an existing campaign
+* Registering a new account

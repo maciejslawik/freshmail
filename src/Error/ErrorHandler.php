@@ -14,6 +14,7 @@ use MSlwk\FreshMail\Exception\Campaign\FreshMailCampaignException;
 use MSlwk\FreshMail\Exception\FreshMailException;
 use MSlwk\FreshMail\Exception\Message\FreshMailSmsException;
 use MSlwk\FreshMail\Exception\Message\FreshMailTransactionalEmailException;
+use MSlwk\FreshMail\Exception\SpamTest\FreshMailSpamTestException;
 
 /**
  * Class ErrorHandler
@@ -29,6 +30,7 @@ class ErrorHandler implements ErrorHandlerInterface
      * @throws FreshMailCampaignException
      * @throws FreshMailException
      * @throws FreshMailSmsException
+     * @throws FreshMailSpamTestException
      * @throws FreshMailTransactionalEmailException
      * @return null
      */
@@ -54,6 +56,8 @@ class ErrorHandler implements ErrorHandlerInterface
             case $code >= 1750 && $code <= 1751:
             case 1798:
                 throw new FreshMailCampaignException($message, $code);
+            case $code >= 1901 && $code <= 1907:
+                throw new FreshMailSpamTestException($message, $code);
             default:
                 throw new FreshMailException($message, $code);
         }

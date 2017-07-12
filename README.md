@@ -31,3 +31,4 @@ The library provides methods of communicating with the API to:
 * Creating a new campaign
 * Editing, deleting, testing and sending an existing campaign
 * Registering a new account
+* Spam-testing an email

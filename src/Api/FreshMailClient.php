@@ -18,6 +18,7 @@ use MSlwk\FreshMail\Handler\Campaign\CampaignTestHandler;
 use MSlwk\FreshMail\Handler\Message\SmsHandler;
 use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
 use MSlwk\FreshMail\Handler\Ping\PingHandler;
+use MSlwk\FreshMail\Handler\SpamTest\SpamTestHandler;
 
 /**
  * Class FreshMailClient
@@ -543,6 +544,12 @@ class FreshMailClient implements FreshMailClientInterface
         string $fromEmail = '',
         string $fromName = ''
     ): \stdClass {
-        return new \stdClass();
+        $handler = new SpamTestHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->spamCheck(
+            $subject,
+            $content,
+            $fromEmail,
+            $fromName
+        );
     }
 }

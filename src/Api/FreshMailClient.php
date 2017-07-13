@@ -21,6 +21,7 @@ use MSlwk\FreshMail\Handler\Ping\PingHandler;
 use MSlwk\FreshMail\Handler\SpamTest\SpamTestHandler;
 use MSlwk\FreshMail\Handler\Subscriber\SubscriberAddHandler;
 use MSlwk\FreshMail\Handler\Subscriber\SubscriberEditHandler;
+use MSlwk\FreshMail\Handler\Subscriber\SubscriberGetHandler;
 
 /**
  * Class FreshMailClient
@@ -327,7 +328,11 @@ class FreshMailClient implements FreshMailClientInterface
      */
     public function getSubscriber(string $email, string $listHash): \stdClass
     {
-        return new \stdClass();
+        $handler = new SubscriberGetHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->getSubscriber(
+            $email,
+            $listHash
+        );
     }
 
     /**

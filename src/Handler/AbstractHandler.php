@@ -96,10 +96,10 @@ abstract class AbstractHandler
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_HEADER, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $postRequestParamsString);
-
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $postRequestParamsString);
+        if ($postRequestParamsString) {
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $postRequestParamsString);
+            curl_setopt($curl, CURLOPT_POST, true);
+        }
         $rawResponse = curl_exec($curl);
 
         $headerSize = curl_getinfo($curl, CURLINFO_HEADER_SIZE);

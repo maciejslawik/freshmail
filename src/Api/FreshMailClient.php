@@ -20,6 +20,7 @@ use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
 use MSlwk\FreshMail\Handler\Ping\PingHandler;
 use MSlwk\FreshMail\Handler\SpamTest\SpamTestHandler;
 use MSlwk\FreshMail\Handler\Subscriber\SubscriberAddHandler;
+use MSlwk\FreshMail\Handler\Subscriber\SubscriberEditHandler;
 
 /**
  * Class FreshMailClient
@@ -308,7 +309,13 @@ class FreshMailClient implements FreshMailClientInterface
         int $subscriberStatus = 0,
         array $customFieldsWithValues = []
     ) {
-        return null;
+        $handler = new SubscriberEditHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->editSubscriber(
+            $email,
+            $listHash,
+            $subscriberStatus,
+            $customFieldsWithValues
+        );
     }
 
     /**

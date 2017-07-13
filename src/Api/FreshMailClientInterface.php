@@ -271,30 +271,6 @@ interface FreshMailClientInterface
     public function getSubscriberLists(): array;
 
     /**
-     * Adds a custom field to a subscriber list and returns its hash.
-     *
-     * @param string $listHash
-     * @param string $fieldName
-     * @param string $fieldTag
-     * @param int $fieldType
-     * @return \stdClass
-     */
-    public function addCustomFieldToSubscriberList(
-        string $listHash,
-        string $fieldName,
-        string $fieldTag = '',
-        int $fieldType = 1
-    ): \stdClass;
-
-    /**
-     * Pulls and array of custom fields for a subscriber list.
-     *
-     * @param string $listHash
-     * @return array
-     */
-    public function getSubscriberListFields(string $listHash): array;
-
-    /**
      * Returns a list of anti-spam checks the message failed and the likelihood of falling into spam.
      *
      * @param string $subject

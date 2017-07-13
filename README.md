@@ -31,5 +31,10 @@ The library provides methods of communicating with the API to:
 * Create a new campaign
 * Edit, delete, test and send an existing campaign
 * Create, delete, get data about and edit a subscriber
+* Create, delete and edit a subscription list
+* Get subscription lists
 * Register a new account
 * Spam-test an email
+
+#### To be implemented ####
+* Multiple subscribers handling

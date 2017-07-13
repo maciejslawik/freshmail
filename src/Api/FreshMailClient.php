@@ -15,6 +15,7 @@ use MSlwk\FreshMail\Handler\Campaign\CampaignDeleteHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignEditHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignSendHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignTestHandler;
+use MSlwk\FreshMail\Handler\Lists\ListCreateHandler;
 use MSlwk\FreshMail\Handler\Message\SmsHandler;
 use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
 use MSlwk\FreshMail\Handler\Ping\PingHandler;
@@ -404,7 +405,12 @@ class FreshMailClient implements FreshMailClientInterface
         string $description = '',
         array $customFieldsWithValues = []
     ): \stdClass {
-        return new \stdClass();
+        $handler = new ListCreateHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->createSubscriberList(
+            $listName,
+            $description,
+            $customFieldsWithValues
+        );
     }
 
     /**
@@ -437,35 +443,6 @@ class FreshMailClient implements FreshMailClientInterface
      * @return array
      */
     public function getSubscriberLists(): array
-    {
-        return [];
-    }
-
-    /**
-     * Adds a custom field to a subscriber list and returns its hash.
-     *
-     * @param string $listHash
-     * @param string $fieldName
-     * @param string $fieldTag
-     * @param int $fieldType
-     * @return \stdClass
-     */
-    public function addCustomFieldToSubscriberList(
-        string $listHash,
-        string $fieldName,
-        string $fieldTag = '',
-        int $fieldType = 1
-    ): \stdClass {
-        return new \stdClass();
-    }
-
-    /**
-     * Pulls and array of custom fields for a subscriber list.
-     *
-     * @param string $listHash
-     * @return array
-     */
-    public function getSubscriberListFields(string $listHash): array
     {
         return [];
     }

@@ -125,7 +125,7 @@ class CampaignCreateHandlerTest extends TestCase
     public function testMissingSubscribtionList()
     {
         $campaignCreateHandler = $this->getCampaignCreateHandlerMock(
-            '{"errors":[{ "message":"Missing subscribtion list and group", "code":"1708" }], "status":"errors"}'
+            '{"errors":[{ "message":"Missing subscription list and group", "code":"1708" }], "status":"errors"}'
         );
         $this->expectException(FreshMailCampaignException::class);
         $campaignCreateHandler->createCampaign('Test');

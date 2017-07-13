@@ -67,7 +67,7 @@ class SubscriberAddHandlerTest extends TestCase
     public function testListDoesntExist()
     {
         $subscriberAddHandler = $this->getSubscriberAddHandlerMock(
-            '{"errors":[{ "message":"The subscribtion list doesnt exist", "code":"1302" }], "status":"errors"}'
+            '{"errors":[{ "message":"The subscription list doesnt exist", "code":"1302" }], "status":"errors"}'
         );
         $this->expectException(FreshMailSubscriberException::class);
         $subscriberAddHandler->addSubscriber('Test', 'Test');

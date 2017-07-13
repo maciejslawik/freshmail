@@ -20,6 +20,7 @@ use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
 use MSlwk\FreshMail\Handler\Ping\PingHandler;
 use MSlwk\FreshMail\Handler\SpamTest\SpamTestHandler;
 use MSlwk\FreshMail\Handler\Subscriber\SubscriberAddHandler;
+use MSlwk\FreshMail\Handler\Subscriber\SubscriberDeleteHandler;
 use MSlwk\FreshMail\Handler\Subscriber\SubscriberEditHandler;
 use MSlwk\FreshMail\Handler\Subscriber\SubscriberGetHandler;
 
@@ -344,7 +345,11 @@ class FreshMailClient implements FreshMailClientInterface
      */
     public function deleteSubscriber(string $email, string $listHash)
     {
-        return null;
+        $handler = new SubscriberDeleteHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->deleteSubscriber(
+            $email,
+            $listHash
+        );
     }
 
     /**

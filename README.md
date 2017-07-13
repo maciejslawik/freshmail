@@ -38,3 +38,4 @@ The library provides methods of communicating with the API to:
 
 #### To be implemented ####
 * Multiple subscribers handling
+* Subscribtion lists custom fields handling

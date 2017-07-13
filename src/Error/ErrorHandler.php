@@ -60,6 +60,7 @@ class ErrorHandler implements ErrorHandlerInterface
             case $code >= 1501 && $code <= 1513:
                 throw new FreshMailAccountException($message, $code);
             case $code >= 1601 && $code <= 1605:
+            case 1611:
                 throw new FreshMailListException($message, $code);
             case $code >= 1701 && $code <= 1713:
             case $code >= 1721 && $code <= 1726:

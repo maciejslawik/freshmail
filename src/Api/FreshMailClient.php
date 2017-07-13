@@ -16,6 +16,7 @@ use MSlwk\FreshMail\Handler\Campaign\CampaignEditHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignSendHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignTestHandler;
 use MSlwk\FreshMail\Handler\Lists\ListCreateHandler;
+use MSlwk\FreshMail\Handler\Lists\ListEditHandler;
 use MSlwk\FreshMail\Handler\Message\SmsHandler;
 use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
 use MSlwk\FreshMail\Handler\Ping\PingHandler;
@@ -423,7 +424,12 @@ class FreshMailClient implements FreshMailClientInterface
      */
     public function updateSubscriberList(string $listHash, string $listName, string $description = '')
     {
-        return null;
+        $handler = new ListEditHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->updateSubscriberList(
+            $listHash,
+            $listName,
+            $description
+        );
     }
 
     /**

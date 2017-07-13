@@ -1,6 +1,6 @@
 <?php
 /**
- * File: ListEditHandlerTest.php
+ * File: ListDeleteHandlerTest.php
  *
  * @author      Maciej Sławik <maciekslawik@gmail.com>
  * Github:      https://github.com/maciejslawik
@@ -8,18 +8,18 @@
 
 namespace MSlwk\FreshMail\Test\Lists;
 
-use MSlwk\FreshMail\Handler\Lists\ListEditHandler;
+use MSlwk\FreshMail\Handler\Lists\ListDeleteHandler;
 use MSlwk\FreshMail\Tests\BaseTest;
 use PHPUnit\Framework\TestCase;
 use MSlwk\FreshMail\Error\ErrorHandler;
 use MSlwk\FreshMail\Exception\Lists\FreshMailListException;
 
 /**
- * Class ListEditHandlerTest
+ * Class ListDeleteHandlerTest
  *
  * @package MSlwk\FreshMail\Test\Lists
  */
-class ListEditHandlerTest extends TestCase
+class ListDeleteHandlerTest extends TestCase
 {
     use BaseTest;
 
@@ -27,51 +27,51 @@ class ListEditHandlerTest extends TestCase
      * @param $sendRequestReturnValue
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    public function getListEditHandlerMock($sendRequestReturnValue)
+    public function getListDeleteHandlerMock($sendRequestReturnValue)
     {
-        $listEditHandler = $this->getMockBuilder('\MSlwk\FreshMail\Handler\Lists\ListEditHandler')
+        $listDeleteHandler = $this->getMockBuilder('\MSlwk\FreshMail\Handler\Lists\ListDeleteHandler')
             ->setConstructorArgs([new ErrorHandler(), '', ''])
             ->setMethods(['sendRequest'])
             ->getMock();
 
-        $listEditHandler->expects($this->once())
+        $listDeleteHandler->expects($this->once())
             ->method('sendRequest')
             ->will($this->returnValue($sendRequestReturnValue));
 
-        return $listEditHandler;
+        return $listDeleteHandler;
     }
 
-    public function testListEditSuccessfully()
+    public function testListDeletedSuccessfully()
     {
-        $listEditHandler = $this->getListEditHandlerMock(
+        $listDeleteHandler = $this->getListDeleteHandlerMock(
             '{"status":"OK"}'
         );
-        self::assertNull($listEditHandler->updateSubscriberList('Test', 'Test'));
+        self::assertNull($listDeleteHandler->deleteSubscriberList('Test'));
     }
 
     public function testApiEndpoint()
     {
-        $listCreateHandler = new ListEditHandler(new ErrorHandler(), '', '');
-        $expectedApiEndpoint = '/rest/subscribers_list/update';
-        $returnedApiEndpoint = $this->getApiEndpoint($listCreateHandler);
+        $listDeleteHandler = new ListDeleteHandler(new ErrorHandler(), '', '');
+        $expectedApiEndpoint = '/rest/subscribers_list/delete';
+        $returnedApiEndpoint = $this->getApiEndpoint($listDeleteHandler);
         self::assertEquals($expectedApiEndpoint, $returnedApiEndpoint);
     }
 
-    public function testEmptyName()
+    public function testListDeleteFailed()
     {
-        $listEditHandler = $this->getListEditHandlerMock(
-            '{"errors":[{"message":"Empty list name","code":"1611"}],"status":"errors"}'
+        $listDeleteHandler = $this->getListDeleteHandlerMock(
+            '{"errors":[{"message":"The lists couldnt be deleted","code":"1605"}],"status":"errors"}'
         );
         $this->expectException(FreshMailListException::class);
-        $listEditHandler->updateSubscriberList('Test', 'Test');
+        $listDeleteHandler->deleteSubscriberList('Test');
     }
 
     public function testAccessDenied()
     {
-        $listEditHandler = $this->getListEditHandlerMock(
+        $listDeleteHandler = $this->getListDeleteHandlerMock(
             '{"errors":[{"message":"Access to the list denied","code":"1604"}],"status":"errors"}'
         );
         $this->expectException(FreshMailListException::class);
-        $listEditHandler->updateSubscriberList('Test', 'Test');
+        $listDeleteHandler->deleteSubscriberList('Test');
     }
 }

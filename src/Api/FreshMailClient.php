@@ -16,6 +16,7 @@ use MSlwk\FreshMail\Handler\Campaign\CampaignEditHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignSendHandler;
 use MSlwk\FreshMail\Handler\Campaign\CampaignTestHandler;
 use MSlwk\FreshMail\Handler\Lists\ListCreateHandler;
+use MSlwk\FreshMail\Handler\Lists\ListDeleteHandler;
 use MSlwk\FreshMail\Handler\Lists\ListEditHandler;
 use MSlwk\FreshMail\Handler\Message\SmsHandler;
 use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
@@ -440,7 +441,10 @@ class FreshMailClient implements FreshMailClientInterface
      */
     public function deleteSubscriberList(string $listHash)
     {
-        return null;
+        $handler = new ListDeleteHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->deleteSubscriberList(
+            $listHash
+        );
     }
 
     /**

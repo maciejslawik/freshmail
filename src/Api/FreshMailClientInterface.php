@@ -154,66 +154,6 @@ interface FreshMailClientInterface
     ): string;
 
     /**
-     * Adds multiple subscribers to the list and optionally sets their status.
-     *
-     * @param array $subscribers
-     * @param string $listHash
-     * @param int $subscriberStatus
-     * @param bool $sendConfirmationToSubscribers
-     * @return null
-     */
-    public function addMultipleSubscribers(
-        array $subscribers,
-        string $listHash,
-        int $subscriberStatus = 0,
-        bool $sendConfirmationToSubscribers = false
-    );
-
-    /**
-     * Updates fields of multiple subscribers and optionally changes their status.
-     *
-     * @param array $subscribers
-     * @param string $listHash
-     * @param int $subscriberStatus
-     * @return null
-     */
-    public function editMultipleSubscribers(array $subscribers, string $listHash, int $subscriberStatus = 0);
-
-    /**
-     * Updates field value for all subscribers.
-     *
-     * @param string $listHash
-     * @param string $fieldToSetTag
-     * @param string $fieldToSetValue
-     * @param string $urlToSendResponse
-     * @return null
-     */
-    public function updateMultipleSubscribersFieldValue(
-        string $listHash,
-        string $fieldToSetTag,
-        string $fieldToSetValue,
-        string $urlToSendResponse
-    );
-
-    /**
-     * Pulls information about multiple subscribers using their email addresses.
-     *
-     * @param array $subscribersEmails
-     * @param string $listHash
-     * @return array
-     */
-    public function getMultipleSubscribers(array $subscribersEmails, string $listHash): array;
-
-    /**
-     * Deletes multiple subscribers using their email addresses.
-     *
-     * @param array $subscribersEmails
-     * @param string $listHash
-     * @return null
-     */
-    public function deleteMultipleSubscribers(array $subscribersEmails, string $listHash);
-
-    /**
      * Adds a single subscriber to list.
      *
      * @param string $email
@@ -264,14 +204,6 @@ interface FreshMailClientInterface
      * @return array
      */
     public function deleteSubscriber(string $email, string $listHash);
-
-    /**
-     * @param string $email
-     * @param string $listHash
-     * @param int $limit
-     * @return array
-     */
-    public function getSubscriberHistory(string $email, string $listHash, int $limit = 10): array;
 
     /**
      * Registers a new account and returns its hash, api_key and api_secret.

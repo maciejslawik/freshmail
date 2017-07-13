@@ -19,6 +19,7 @@ use MSlwk\FreshMail\Handler\Message\SmsHandler;
 use MSlwk\FreshMail\Handler\Message\TransactionalEmailHandler;
 use MSlwk\FreshMail\Handler\Ping\PingHandler;
 use MSlwk\FreshMail\Handler\SpamTest\SpamTestHandler;
+use MSlwk\FreshMail\Handler\Subscriber\SubscriberAddHandler;
 
 /**
  * Class FreshMailClient
@@ -266,79 +267,6 @@ class FreshMailClient implements FreshMailClientInterface
     }
 
     /**
-     * Adds multiple subscribers to the list and optionally sets their status.
-     *
-     * @param array $subscribers
-     * @param string $listHash
-     * @param int $subscriberStatus
-     * @param bool $sendConfirmationToSubscribers
-     * @return null
-     */
-    public function addMultipleSubscribers(
-        array $subscribers,
-        string $listHash,
-        int $subscriberStatus = 0,
-        bool $sendConfirmationToSubscribers = false
-    ) {
-        return null;
-    }
-
-    /**
-     * Updates fields of multiple subscribers and optionally changes their status.
-     *
-     * @param array $subscribers
-     * @param string $listHash
-     * @param int $subscriberStatus
-     * @return null
-     */
-    public function editMultipleSubscribers(array $subscribers, string $listHash, int $subscriberStatus = 0)
-    {
-        return null;
-    }
-
-    /**
-     * Updates field value for all subscribers.
-     *
-     * @param string $listHash
-     * @param string $fieldToSetTag
-     * @param string $fieldToSetValue
-     * @param string $urlToSendResponse
-     * @return null
-     */
-    public function updateMultipleSubscribersFieldValue(
-        string $listHash,
-        string $fieldToSetTag,
-        string $fieldToSetValue,
-        string $urlToSendResponse
-    ) {
-        return null;
-    }
-
-    /**
-     * Pulls information about multiple subscribers using their email addresses.
-     *
-     * @param array $subscribersEmails
-     * @param string $listHash
-     * @return array
-     */
-    public function getMultipleSubscribers(array $subscribersEmails, string $listHash): array
-    {
-        return [];
-    }
-
-    /**
-     * Deletes multiple subscribers using their email addresses.
-     *
-     * @param array $subscribersEmails
-     * @param string $listHash
-     * @return null
-     */
-    public function deleteMultipleSubscribers(array $subscribersEmails, string $listHash)
-    {
-        return null;
-    }
-
-    /**
      * Adds a single subscriber to list.
      *
      * @param string $email
@@ -355,7 +283,14 @@ class FreshMailClient implements FreshMailClientInterface
         bool $sendConfirmationToSubscriber = false,
         array $customFieldsWithValues = []
     ) {
-        return null;
+        $handler = new SubscriberAddHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
+        return $handler->addSubscriber(
+            $email,
+            $listHash,
+            $subscriberStatus,
+            $sendConfirmationToSubscriber,
+            $customFieldsWithValues
+        );
     }
 
     /**
@@ -398,17 +333,6 @@ class FreshMailClient implements FreshMailClientInterface
     public function deleteSubscriber(string $email, string $listHash)
     {
         return null;
-    }
-
-    /**
-     * @param string $email
-     * @param string $listHash
-     * @param int $limit
-     * @return array
-     */
-    public function getSubscriberHistory(string $email, string $listHash, int $limit = 10): array
-    {
-        return [];
     }
 
     /**

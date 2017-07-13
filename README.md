@@ -28,7 +28,8 @@ The library provides methods of communicating with the API to:
 * Test connection 
 * Send transactional emails
 * Send SMS messages
-* Creating a new campaign
-* Editing, deleting, testing and sending an existing campaign
-* Registering a new account
-* Spam-testing an email
+* Create a new campaign
+* Edit, delete, test and send an existing campaign
+* Create, delete, get data about and edit a subscriber
+* Register a new account
+* Spam-test an email

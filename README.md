@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/maciejslawik/freshmail.svg?branch=master)](https://travis-ci.org/maciejslawik/freshmail)
+[![Latest Stable Version](https://poser.pugx.org/mslwk/freshmail/v/stable)](https://packagist.org/packages/mslwk/freshmail)
+[![License](https://poser.pugx.org/mslwk/freshmail/license)](https://packagist.org/packages/mslwk/freshmail)
 
 # FreshMail REST API client library #
 

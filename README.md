@@ -1,4 +1,6 @@
-## FreshMail REST API client library
+[![Build Status](https://travis-ci.org/maciejslawik/freshmail.svg?branch=master)](https://travis-ci.org/maciejslawik/freshmail)
+
+# FreshMail REST API client library #
 
 The library was designed to provide simple interface for using FreshMail API.
 It is a standalone and requires no outside libraries to work.

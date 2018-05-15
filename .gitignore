@@ -1,0 +1,7 @@
+.idea/
+build/
+docker-compose.yml
+docker/
+vendor/
+composer.lock
+coverage/

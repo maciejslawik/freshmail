@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/maciejslawik/freshmail.svg?branch=master)](https://travis-ci.org/maciejslawik/freshmail)
+[![Build Status](https://scrutinizer-ci.com/g/maciejslawik/freshmail/badges/build.png?b=master)](https://scrutinizer-ci.com/g/maciejslawik/freshmail/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/maciejslawik/freshmail/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/maciejslawik/freshmail/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/maciejslawik/freshmail/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/maciejslawik/freshmail/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/mslwk/freshmail/v/stable)](https://packagist.org/packages/mslwk/freshmail)
 [![License](https://poser.pugx.org/mslwk/freshmail/license)](https://packagist.org/packages/mslwk/freshmail)
 
@@ -27,7 +29,7 @@ Use composer to include the library in your project.
 composer require mslwk/freshmail
 ```
 
-#### Functions ####
+#### Features ####
 The library provides methods of communicating with the API to:
 * Test connection 
 * Send transactional emails
@@ -39,7 +41,3 @@ The library provides methods of communicating with the API to:
 * Get subscription lists
 * Register a new account
 * Spam-test an email
-
-#### To be implemented ####
-* Multiple subscribers handling
-* Subscribtion lists custom fields handling

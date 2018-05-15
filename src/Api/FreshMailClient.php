@@ -27,6 +27,7 @@ use MSlwk\FreshMail\Handler\Subscriber\SubscriberAddHandler;
 use MSlwk\FreshMail\Handler\Subscriber\SubscriberDeleteHandler;
 use MSlwk\FreshMail\Handler\Subscriber\SubscriberEditHandler;
 use MSlwk\FreshMail\Handler\Subscriber\SubscriberGetHandler;
+use stdClass;
 
 /**
  * Class FreshMailClient
@@ -96,7 +97,7 @@ class FreshMailClient implements FreshMailClientInterface
         string $domain = ''
     ) {
         $handler = new TransactionalEmailHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
-        return $handler->sendTransactionalEmail(
+        $handler->sendTransactionalEmail(
             $email,
             $subject,
             $content,
@@ -129,7 +130,7 @@ class FreshMailClient implements FreshMailClientInterface
         bool $single = false
     ) {
         $handler = new SmsHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
-        return $handler->sendSingleSms(
+        $handler->sendSingleSms(
             $phoneNumber,
             $content,
             $from,
@@ -168,7 +169,7 @@ class FreshMailClient implements FreshMailClientInterface
         string $resignLink = ''
     ) {
         $handler = new CampaignEditHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
-        return $handler->editCampaign(
+        $handler->editCampaign(
             $campaignHash,
             $name,
             $urlToDownloadContent,
@@ -192,7 +193,7 @@ class FreshMailClient implements FreshMailClientInterface
     public function deleteCampaign(string $campaignHash)
     {
         $handler = new CampaignDeleteHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
-        return $handler->deleteCampaign(
+        $handler->deleteCampaign(
             $campaignHash
         );
     }
@@ -208,7 +209,7 @@ class FreshMailClient implements FreshMailClientInterface
     public function testCampaign(string $campaignHash, array $emailAddresses, array $customFieldsWithValues = [])
     {
         $handler = new CampaignTestHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
-        return $handler->testCampaign(
+        $handler->testCampaign(
             $campaignHash,
             $emailAddresses,
             $customFieldsWithValues
@@ -225,7 +226,7 @@ class FreshMailClient implements FreshMailClientInterface
     public function sendCampaign(string $campaignHash, string $timeToSend = '')
     {
         $handler = new CampaignSendHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
-        return $handler->sendCampaign(
+        $handler->sendCampaign(
             $campaignHash,
             $timeToSend
         );
@@ -291,7 +292,7 @@ class FreshMailClient implements FreshMailClientInterface
         array $customFieldsWithValues = []
     ) {
         $handler = new SubscriberAddHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
-        return $handler->addSubscriber(
+        $handler->addSubscriber(
             $email,
             $listHash,
             $subscriberStatus,
@@ -316,7 +317,7 @@ class FreshMailClient implements FreshMailClientInterface
         array $customFieldsWithValues = []
     ) {
         $handler = new SubscriberEditHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
-        return $handler->editSubscriber(
+        $handler->editSubscriber(
             $email,
             $listHash,
             $subscriberStatus,
@@ -329,9 +330,9 @@ class FreshMailClient implements FreshMailClientInterface
      *
      * @param string $email
      * @param string $listHash
-     * @return \stdClass
+     * @return stdClass
      */
-    public function getSubscriber(string $email, string $listHash): \stdClass
+    public function getSubscriber(string $email, string $listHash): stdClass
     {
         $handler = new SubscriberGetHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
         return $handler->getSubscriber(
@@ -368,7 +369,7 @@ class FreshMailClient implements FreshMailClientInterface
      * @param bool $sendActivationEmail
      * @param bool $requireActivation
      * @param bool $isChildAccount
-     * @return \stdClass
+     * @return stdClass
      */
     public function registerNewAccount(
         string $login,
@@ -380,7 +381,7 @@ class FreshMailClient implements FreshMailClientInterface
         bool $sendActivationEmail = true,
         bool $requireActivation = true,
         bool $isChildAccount = false
-    ): \stdClass {
+    ): stdClass {
         $handler = new AccountCreateHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
         return $handler->registerNewAccount(
             $login,
@@ -401,13 +402,13 @@ class FreshMailClient implements FreshMailClientInterface
      * @param string $listName
      * @param string $description
      * @param array $customFieldsWithValues
-     * @return \stdClass
+     * @return stdClass
      */
     public function createSubscriberList(
         string $listName,
         string $description = '',
         array $customFieldsWithValues = []
-    ): \stdClass {
+    ): stdClass {
         $handler = new ListCreateHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
         return $handler->createSubscriberList(
             $listName,
@@ -427,7 +428,7 @@ class FreshMailClient implements FreshMailClientInterface
     public function updateSubscriberList(string $listHash, string $listName, string $description = '')
     {
         $handler = new ListEditHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
-        return $handler->updateSubscriberList(
+        $handler->updateSubscriberList(
             $listHash,
             $listName,
             $description
@@ -443,7 +444,7 @@ class FreshMailClient implements FreshMailClientInterface
     public function deleteSubscriberList(string $listHash)
     {
         $handler = new ListDeleteHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
-        return $handler->deleteSubscriberList(
+        $handler->deleteSubscriberList(
             $listHash
         );
     }
@@ -466,14 +467,14 @@ class FreshMailClient implements FreshMailClientInterface
      * @param string $content
      * @param string $fromEmail
      * @param string $fromName
-     * @return \stdClass
+     * @return stdClass
      */
     public function spamCheck(
         string $subject,
         string $content,
         string $fromEmail = '',
         string $fromName = ''
-    ): \stdClass {
+    ): stdClass {
         $handler = new SpamTestHandler(new ErrorHandler(), $this->apiKey, $this->apiSecret);
         return $handler->spamCheck(
             $subject,

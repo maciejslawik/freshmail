@@ -3,6 +3,7 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/maciejslawik/freshmail/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/maciejslawik/freshmail/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/mslwk/freshmail/v/stable)](https://packagist.org/packages/mslwk/freshmail)
 [![License](https://poser.pugx.org/mslwk/freshmail/license)](https://packagist.org/packages/mslwk/freshmail)
+[![Total Downloads](https://poser.pugx.org/mslwk/freshmail/downloads)](https://packagist.org/packages/mslwk/freshmail)
 
 # FreshMail REST API client library #
 

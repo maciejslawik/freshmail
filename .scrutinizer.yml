@@ -1,7 +1,17 @@
 build:
-    environment:
-        php:
-            version: 7.2
+    nodes:
+        php70:
+            environment:
+                php: 7.0
+        php71:
+            environment:
+                php: 7.1
+        php72:
+            environment:
+                php: 7.2
+        php73:
+            environment:
+                php: 7.3
     tests:
         override:
             -

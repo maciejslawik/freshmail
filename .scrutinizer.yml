@@ -17,7 +17,7 @@ build:
                 php: 7.4
         php80:
             environment:
-                php: 8.0.0RC3
+                php: 8.0
     tests:
         override:
             -

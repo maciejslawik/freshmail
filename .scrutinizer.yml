@@ -1,10 +1,9 @@
 build:
     nodes:
         analysis:
-            tests:
-                override:
-                    - command: phpcs-run
-                      use_website_config: true
+            dependencies:
+                after:
+                    - composer require --dev "squizlabs/php_codesniffer=^3.6"
         php70:
             environment:
                 php: 7.0

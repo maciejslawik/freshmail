@@ -1,5 +1,10 @@
 build:
     nodes:
+        analysis:
+            tests:
+                override:
+                    - command: phpcs-run
+                      use_website_config: true
         php70:
             environment:
                 php: 7.0
@@ -18,10 +23,11 @@ build:
         php80:
             environment:
                 php: 8.0
+
     tests:
         override:
             -
-                command: mkdir build/logs/clover && vendor/bin/phpunit --coverage-clover=build/logs/clover
+                command: vendor/bin/phpunit --coverage-clover=build/logs/clover
                 coverage:
                     file: build/logs/clover
                     format: php-clover

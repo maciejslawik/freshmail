@@ -23,7 +23,9 @@ build:
         php80:
             environment:
                 php: 8.0
-
+    environment:
+        variables:
+            XDEBUG_MODE: coverage
     tests:
         override:
             -

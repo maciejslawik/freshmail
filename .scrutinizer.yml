@@ -1,9 +1,8 @@
 build:
     nodes:
         analysis:
-            dependencies:
-                after:
-                    - composer require --dev "squizlabs/php_codesniffer=^3.6"
+            environment:
+                php: 7.4
         php70:
             environment:
                 php: 7.0
